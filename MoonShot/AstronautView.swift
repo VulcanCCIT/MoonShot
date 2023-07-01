@@ -11,14 +11,21 @@ struct AstronautView: View {
   let astronaut: Astronaut
   
   var body: some View {
-    ScrollView {
-      VStack {
-        Image(astronaut.id)
-          .resizable()
-          .scaledToFit()
-        
-        Text(astronaut.description)
-          .padding()
+    GeometryReader { geometry in
+      Image("stars")
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .ignoresSafeArea()
+        .frame(width: geometry.size.width, height: geometry.size.height)
+      ScrollView {
+        VStack {
+          Image(astronaut.id)
+            .resizable()
+            .scaledToFit()
+          
+          Text(astronaut.description)
+            .padding()
+        }
       }
     }
     .background(.darkBackground)
